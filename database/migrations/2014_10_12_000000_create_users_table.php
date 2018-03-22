@@ -20,10 +20,12 @@ class CreateUsersTable extends Migration
             $table->string('department');
             $table->string('faculty');
             $table->integer('phone');
+            $table->integer('role_id')->default(3);
             $table->string('verify_token')->nullable();
             $table->boolean('status')->default(0);
             $table->string('password');
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
