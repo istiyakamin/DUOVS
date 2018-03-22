@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Mail;
+use App\Mail\verifyEmail;
+use App\User;
+
 
 class RegisterController extends Controller
 {
@@ -50,6 +54,9 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'department' => 'required|string',
+            'faculty' => 'required|string',
+            'phone' => 'required|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -62,10 +69,40 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'department' => $data['department'],
+            'faculty' => $data['faculty'],
+            'phone' => $data['phone'],
+            'verify_token' => Str::random(40),
+            'password' => bcrypt($data['password']),    
         ]);
+
+        $thisUser = User::findOrFail($user->id);
+        $this->sendEmail($thisUser);
+        return $user;
+
+
+    }
+
+    public function sendEmail($thisUser)
+    {
+        Mail::to($thisUser['email'])->send(new verifyEmail($thisUser));
+    }
+
+    public function sendEmailDone($email, $verify_token)
+    {
+        $user = User::where(['email'=>$email,'verify_token'=>$verify_token])->first();
+        if($user){
+            return User::where(['email'=>$email,'verify_token'=>$verify_token])->update(['status'=>'1', 'verify_token'=> NULL]);
+        }else{
+            return 'User not found';
+        }
+    }
+
+    public function verifyEmailFirst()
+    {
+        return view('auth.verifyEmailFirst');
     }
 }

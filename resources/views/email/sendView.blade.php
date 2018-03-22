@@ -1,0 +1,1 @@
+<h1>To Verify Email to Active you account <a href="{{route('sendEmailDone', ["email"=>$user->email, "verify_token"=> $user->verify_token])}}">Click Here</a></h1>
