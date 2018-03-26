@@ -8,6 +8,7 @@ use App\Repositories\UserRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Auth;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
@@ -93,7 +94,8 @@ class UserController extends AppBaseController
      */
     public function edit($id)
     {
-        $user = $this->userRepository->findWithoutFail($id);
+        if($id == Auth::user()->id){
+            $user = $this->userRepository->findWithoutFail($id);
 
         if (empty($user)) {
             Flash::error('User not found');
@@ -101,7 +103,14 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
+
+
         return view('users.edit')->with('user', $user);
+            
+        }else{
+            return redirect()->back();
+        }
+        
     }
 
     /**

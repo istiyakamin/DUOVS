@@ -6,11 +6,7 @@
         <th>Department</th>
         <th>Faculty</th>
         <th>Phone</th>
-        <th>Role Id</th>
-        <th>Verify Token</th>
-        <th>Status</th>
-        <th>Password</th>
-        <th>Remember Token</th>
+        <th>Role</th>
             <th colspan="3">Action</th>
         </tr>
     </thead>
@@ -22,16 +18,11 @@
             <td>{!! $user->department !!}</td>
             <td>{!! $user->faculty !!}</td>
             <td>{!! $user->phone !!}</td>
-            <td>{!! $user->role_id !!}</td>
-            <td>{!! $user->verify_token !!}</td>
-            <td>{!! $user->status !!}</td>
-            <td>{!! $user->password !!}</td>
-            <td>{!! $user->remember_token !!}</td>
+            <td>{{$user->role['name']}}</td>
             <td>
                 {!! Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
                     <a href="{!! route('users.show', [$user->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                    <a href="{!! route('users.edit', [$user->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
                     {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                 </div>
                 {!! Form::close() !!}

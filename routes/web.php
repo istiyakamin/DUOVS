@@ -22,17 +22,32 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/verifyEmailFirst', 'Auth\RegisterController@verifyEmailFirst')->name('verifyEmailFirst');
 Route::get('/verify/{email}/{verify_token}','Auth\RegisterController@sendEmailDone')->name('sendEmailDone');
 
+Route::middleware(['auth'])->group(function () {
 
-Route::resource('categories', 'CategoryController');
 
-Route::resource('nominations', 'NominationController');
+	Route::resource('users', 'UserController');
 
-Route::resource('nominationUsers', 'NominationUserController');
+});
+		// Only Admin can access This
+Route::middleware(['admin', 'auth'])->group(function () {
 
-Route::resource('roles', 'RoleController');
+	//User is here
+	//Route::get('users', 'UserController@index');
+	Route::delete('users/{id}', 'UserController@destroy');
+	Route::get('users/create', 'UserController@create');
+	Route::get('users/{id}/edit', 'UserController@edit');
+	Route::match(['put', 'patch'], 'users/{id}', 'UserController@update');
 
-Route::resource('settings', 'SettingController');
 
-Route::resource('users', 'UserController');
 
-Route::resource('votings', 'VotingController');
+    Route::resource('roles', 'RoleController');
+
+    Route::resource('elections', 'ElectionController');
+
+	Route::resource('electionCategories', 'ElectionCategoryController');
+
+	Route::resource('candidates', 'CandidateController');
+
+	Route::resource('votes', 'VoteController');
+	
+});

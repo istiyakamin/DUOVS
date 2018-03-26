@@ -13,8 +13,8 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
-                color: #636b6f;
+                background-color: #367fa9;
+                color: #ffffff;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
@@ -50,7 +50,7 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color: #ffffff;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
@@ -78,16 +78,17 @@
             @endif
 
             <div class="content">
+            <img src="{{asset('img/du.png')}}">
                 <div class="title m-b-md">
-                    Laravel
+                DU Online Voting System
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="#">Home </a>
+                    <a href="/login">login information</a>
+                    <a href="#">About Us</a>
+                    <a href="#">Election News</a>
+                    <a href="#">Contact Us</a>
                 </div>
             </div>
         </div>
