@@ -83,8 +83,16 @@
           <a href="{!! route('votes.index') !!}"><i class="fa fa-edit"></i><span>Votes</span></a>
       </li>
 
+      <li class="{{ Request::is('electionNews*') ? 'active' : '' }}">
+          <a href="{!! route('electionNews.index') !!}"><i class="fa fa-edit"></i><span>Election News</span></a>
+      </li>
+
+      
 		@endif
 
 @endif
+
+
+
 
 

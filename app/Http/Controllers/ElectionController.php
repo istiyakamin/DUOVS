@@ -57,6 +57,12 @@ class ElectionController extends AppBaseController
      */
     public function store(CreateElectionRequest $request)
     {
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'description' => 'required',
+            'election_category_id' => 'required',
+        ]);
+
         $input = $request->all();
 
         $election = $this->electionRepository->create($input);
@@ -118,6 +124,12 @@ class ElectionController extends AppBaseController
      */
     public function update($id, UpdateElectionRequest $request)
     {
+        $this->validate($request, [
+            'name' => 'required|max(values):255',
+            'description' => 'required',
+            'election_category_id' => 'required',
+        ]);
+
         $election = $this->electionRepository->findWithoutFail($id);
 
         if (empty($election)) {

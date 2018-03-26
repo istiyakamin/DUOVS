@@ -87,7 +87,7 @@
                     <a href="#">Home </a>
                     <a href="/login">login information</a>
                     <a href="#">About Us</a>
-                    <a href="#">Election News</a>
+                    <a href="/election_news">Election News</a>
                     <a href="#">Contact Us</a>
                 </div>
             </div>
