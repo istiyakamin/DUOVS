@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Models\Election;
+use App\Models\User;
 
 class CandidateController extends AppBaseController
 {
@@ -43,7 +45,13 @@ class CandidateController extends AppBaseController
      */
     public function create()
     {
-        return view('candidates.create');
+        //election all data
+        $election = ELection::all();
+
+        //all usaer data
+        $user = User::all();
+        
+        return view('candidates.create', compact('election', 'user'));
     }
 
     /**
@@ -55,6 +63,12 @@ class CandidateController extends AppBaseController
      */
     public function store(CreateCandidateRequest $request)
     {
+
+        $this->validate($request, [
+            'election_id' => 'required|integer',
+            'user_id' => 'required|integer',
+        ]);
+
         $input = $request->all();
 
         $candidate = $this->candidateRepository->create($input);
@@ -93,6 +107,9 @@ class CandidateController extends AppBaseController
      */
     public function edit($id)
     {
+        $election = ELection::all();
+        $user = User::all();
+
         $candidate = $this->candidateRepository->findWithoutFail($id);
 
         if (empty($candidate)) {
@@ -101,7 +118,7 @@ class CandidateController extends AppBaseController
             return redirect(route('candidates.index'));
         }
 
-        return view('candidates.edit')->with('candidate', $candidate);
+        return view('candidates.edit', compact('candidate', 'election', 'user'));
     }
 
     /**
@@ -114,6 +131,7 @@ class CandidateController extends AppBaseController
      */
     public function update($id, UpdateCandidateRequest $request)
     {
+
         $candidate = $this->candidateRepository->findWithoutFail($id);
 
         if (empty($candidate)) {

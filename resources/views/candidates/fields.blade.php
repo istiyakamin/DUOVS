@@ -1,13 +1,27 @@
 <!-- Election Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('election_id', 'Election Id:') !!}
-    {!! Form::number('election_id', null, ['class' => 'form-control']) !!}
+    <div class="form-group">
+      <select class="form-control" name="election_id" id="sel1">
+      			<option value="">Select One</option>
+          @foreach($election as $single_election)
+                <option value="{{$single_election['id']}}">{{$single_election['name']}}</option>
+          @endforeach
+        
+      </select>
+    </div> 
 </div>
 
 <!-- User Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('user_id', 'User Id:') !!}
-    {!! Form::number('user_id', null, ['class' => 'form-control']) !!}
+    <select class="form-control" name="user_id" id="sel1">
+      			<option value="">Select One</option>
+          @foreach($user as $single_user)
+                <option value="{{$single_user['id']}}">{{$single_user['name']}}({{$single_user['faculty']}})</option>
+          @endforeach
+        
+      </select>
 </div>
 
 <!-- Submit Field -->

@@ -42,7 +42,7 @@ Route::middleware(['admin', 'auth'])->group(function () {
 	Route::match(['put', 'patch'], 'users/{id}', 'UserController@update');
 
 
-    Route::resource('roles', 'RoleController');
+    //Route::resource('roles', 'RoleController');
 
     Route::resource('elections', 'ElectionController');
 

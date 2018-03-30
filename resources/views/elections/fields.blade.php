@@ -15,6 +15,7 @@
     {!! Form::label('election_category_id', 'Election Category:') !!}
     <div class="form-group">
       <select class="form-control" name="election_category_id" id="sel1">
+                <option>Select One</option>
           @foreach($all_election_categories as $single_election_category)
                 <option value="{{$single_election_category['id']}}">{{$single_election_category['name']}}</option>
           @endforeach

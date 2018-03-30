@@ -65,10 +65,10 @@
 
 		@if(Auth::user()->role_id == 1)
 
-			<li class="{{ Request::is('roles*') ? 'active' : '' }}">
+		{{-- 	<li class="{{ Request::is('roles*') ? 'active' : '' }}">
 			    <a href="{!! route('roles.index') !!}"><i class="fa fa-edit"></i><span>Roles</span></a>
 			</li>
-
+ --}}
       <li class="{{ Request::is('elections*') ? 'active' : '' }}">
           <a href="{!! route('elections.index') !!}"><i class="fa fa-edit"></i><span>Elections</span></a>
       </li>

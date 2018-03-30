@@ -51,5 +51,16 @@ class Candidate extends Model
         
     ];
 
+
+     public function election_name()
+    {
+        return $this->belongsTo('App\Models\Election');
+    }
+
+     public function user_name()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
     
 }
