@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Election News</title>
+    <title>Contact Page</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{asset('news/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -56,8 +56,8 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="site-heading">
-              <h1>Election News</h1>
-              <span class="subheading">A simple news by DUOVS</span>
+              <h1>Contact Us</h1>
+              <span class="subheading">Knock Knock!! who's there?? follow the Contact us form below</span>
             </div>
           </div>
         </div>
@@ -68,24 +68,12 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-        @foreach($electionNews as $single_news)
           <div class="post-preview">
-              <h2 class="post-title">
-                {{$single_news->title}}
-              </h2>
               <p class="post-subtitle">
-                {{$single_news->description}}
+                
               </p>
-            <p class="post-meta">Posted by
-              <a href="/">Dhaka University Online Voting system</a>
-              on {{$single_news->created_at->format('F d, Y')}}</p>
           </div>
-          @endforeach
           <hr>
-          
-
-          
-          
         </div>
       </div>
     </div>

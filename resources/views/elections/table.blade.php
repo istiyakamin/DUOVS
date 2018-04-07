@@ -3,7 +3,7 @@
         <tr>
             <th>Name</th>
         <th>Description</th>
-        <th>Election Category Id</th>
+        <th>Election Category</th>
         <th>Start</th>
         <th>End</th>
         <th>Is Active</th>
@@ -15,7 +15,7 @@
         <tr>
             <td>{!! $election->name !!}</td>
             <td>{!! $election->description !!}</td>
-            <td>{!! $election->election_category_id !!}</td>
+            <td>{!! $election->election_category['name'] !!}</td>
             <td>{!! $election->start !!}</td>
             <td>{!! $election->end !!}</td>
             <td>{!! $election->is_active !!}</td>

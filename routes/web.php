@@ -23,6 +23,16 @@ Route::get('/verifyEmailFirst', 'Auth\RegisterController@verifyEmailFirst')->nam
 Route::get('/verify/{email}/{verify_token}','Auth\RegisterController@sendEmailDone')->name('sendEmailDone');
 Route::get('/election_news', 'ElectionNewsController@news');
 
+Route::get('/about', function ()
+{
+	return view('page.about');
+});
+
+Route::get('/contact', function ()
+{
+	return view('page.contact');
+});
+
 Route::get('electionNews', 'ElectionNewsController@index');
 
 

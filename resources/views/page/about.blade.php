@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Election News</title>
+    <title>About Page</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{asset('news/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -56,8 +56,8 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="site-heading">
-              <h1>Election News</h1>
-              <span class="subheading">A simple news by DUOVS</span>
+              <h1>About us</h1>
+              <span class="subheading">A simple about us by DUOVS</span>
             </div>
           </div>
         </div>
@@ -68,19 +68,17 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-        @foreach($electionNews as $single_news)
           <div class="post-preview">
-              <h2 class="post-title">
-                {{$single_news->title}}
-              </h2>
+              
               <p class="post-subtitle">
-                {{$single_news->description}}
+                The 15-member Dhaka University Teachers’ Association executive committee will be elected on Monday by 2,010 teachers at the Teachers’ Club. DU Chemistry Department Professor Tofail Ahmad Chowdhury will conduct the election, from 10:00am to 2:00pm, to be contested by the pro-Awami League Blue Panel and pro-BNP-Jamaat White Panel. Earth and Environmental Sciences Faculty Professor Maksud Kamal and Business Faculty’s dean professor Shibli Rubayat Ul Islam from Blue Panel, and Physics department professor ABM Obaidul Islam and Statistics department professor Lutfor Rahman from White Panel will vie for the posts of president and general secretary respectively. AK/GY
+                <br>
+                The 15-member Dhaka University Teachers’ Association executive committee will be elected on Monday by 2,010 teachers at the Teachers’ Club. DU Chemistry Department Professor Tofail Ahmad Chowdhury will conduct the election, from 10:00am to 2:00pm, to be contested by the pro-Awami League Blue Panel and pro-BNP-Jamaat White Panel. Earth and Environmental Sciences Faculty Professor Maksud Kamal and Business Faculty’s dean professor Shibli Rubayat Ul Islam from Blue Panel, and Physics department professor ABM Obaidul Islam and Statistics department professor Lutfor Rahman from White Panel will vie for the posts of president and general secretary respectively. AK/GY
+                <br>
+                The 15-member Dhaka University Teachers’ Association executive committee will be elected on Monday by 2,010 teachers at the Teachers’ Club. DU Chemistry Department Professor Tofail Ahmad Chowdhury will conduct the election, from 10:00am to 2:00pm, to be contested by the pro-Awami League Blue Panel and pro-BNP-Jamaat White Panel. Earth and Environmental Sciences Faculty Professor Maksud Kamal and Business Faculty’s dean professor Shibli Rubayat Ul Islam from Blue Panel, and Physics department professor ABM Obaidul Islam and Statistics department professor Lutfor Rahman from White Panel will vie for the posts of president and general secretary respectively. AK/GY
               </p>
-            <p class="post-meta">Posted by
-              <a href="/">Dhaka University Online Voting system</a>
-              on {{$single_news->created_at->format('F d, Y')}}</p>
+            
           </div>
-          @endforeach
           <hr>
           
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Election;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -51,16 +52,11 @@ class Candidate extends Model
         
     ];
 
-
-     public function election_name()
-    {
-        return $this->belongsTo('App\Models\Election');
-    }
-
-     public function user_name()
-    {
-        return $this->belongsTo('App\Models\User');
-    }
+     public function user()
+        {
+            return $this->belongsTo(Election::class);
+        }
+        
 
     
 }
