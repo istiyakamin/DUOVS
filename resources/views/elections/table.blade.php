@@ -18,7 +18,7 @@
             <td>{!! $election->election_category['name'] !!}</td>
             <td>{!! $election->start !!}</td>
             <td>{!! $election->end !!}</td>
-            <td>{!! $election->is_active !!}</td>
+            <td>@if($election->is_active) Yes @else No @endif</td>
             <td>
                 {!! Form::open(['route' => ['elections.destroy', $election->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

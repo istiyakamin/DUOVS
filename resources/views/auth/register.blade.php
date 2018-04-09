@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -67,6 +67,27 @@
             </div>
 
             <div class="form-group has-feedback{{ $errors->has('department') ? ' has-error' : '' }}">
+               <!--  <input type="text" class="form-control" name="department" value="{{ old('department') }}" placeholder="Department"> -->
+                <select class="selectpicker form-control" name="department">
+                    <option value="CSE">CSE</option>
+                    <option value="IIT">IIT</option>
+                    <option value="PHARMECY">PHARMECY</option>
+                    <option value="ENGLISH">ENGLISH</option>
+                    <option value="EEE">EEE</option>
+                    <option value="MICRO-BIOLOGY">MICRO-BIOLOGY</option>
+                    <option value="BBA">BBA</option>
+                    <option value="BANGLA">BANGLA</option>
+                    <option value="MATHMATICS">MATHMATICS</option>
+                </select>
+
+                @if ($errors->has('department'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('department') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+           <!--  <div class="form-group has-feedback{{ $errors->has('department') ? ' has-error' : '' }}">
                 <input type="text" class="form-control" name="department" value="{{ old('department') }}" placeholder="Department">
                 <span class="glyphicon glyphicon-list form-control-feedback"></span>
 
@@ -76,10 +97,16 @@
                     </span>
                 @endif
             </div>
-
+ -->
             <div class="form-group has-feedback{{ $errors->has('faculty') ? ' has-error' : '' }}">
-                <input type="text" class="form-control" name="faculty" value="{{ old('faculty') }}" placeholder="faculty">
-                <span class="glyphicon glyphicon-indent-left form-control-feedback"></span>
+                <!-- <input type="text" class="form-control" name="faculty" value="{{ old('faculty') }}" placeholder="faculty"> -->
+                <select class="selectpicker form-control" name="faculty">
+                    <option value="ENGINEERING">ENGINEERING</option>
+                    <option value="SCIENCE">SCIENCE</option>
+                    <option value="COMMERCE">COMMERCE</option>
+                    <option value="ARTS">ARTS</option>
+                </select>
+               
 
                 @if ($errors->has('faculty'))
                     <span class="help-block">
