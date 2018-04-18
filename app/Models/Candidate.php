@@ -54,7 +54,7 @@ class Candidate extends Model
 
      public function user()
         {
-            return $this->belongsTo(Election::class);
+            return $this->belongsTo('App\Models\User', 'user_id');
         }
         
 

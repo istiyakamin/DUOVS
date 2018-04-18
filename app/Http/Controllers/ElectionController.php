@@ -11,6 +11,7 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\ElectionCategory;
+use App\Models\Candidate;
 
 class ElectionController extends AppBaseController
 {
@@ -82,6 +83,8 @@ class ElectionController extends AppBaseController
     public function show($id)
     {
         $election = $this->electionRepository->findWithoutFail($id);
+        
+         
 
         if (empty($election)) {
             Flash::error('Election not found');
@@ -89,7 +92,7 @@ class ElectionController extends AppBaseController
             return redirect(route('elections.index'));
         }
 
-        return view('elections.show')->with('election', $election);
+        return view('elections.show', compact('election'));
     }
 
     /**

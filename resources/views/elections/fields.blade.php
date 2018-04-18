@@ -42,7 +42,7 @@
     {!! Form::label('is_active', 'Is Active:') !!}
     <label class="checkbox-inline">
         {!! Form::hidden('is_active', false) !!}
-        {!! Form::checkbox('is_active', '1', null) !!} 1
+        {!! Form::checkbox('is_active', '1', null) !!} Yes
     </label>
 </div>
 

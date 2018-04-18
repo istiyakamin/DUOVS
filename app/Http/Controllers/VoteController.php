@@ -55,13 +55,15 @@ class VoteController extends AppBaseController
      */
     public function store(CreateVoteRequest $request)
     {
+        
         $input = $request->all();
-
+        
+        return $input;
         $vote = $this->voteRepository->create($input);
 
         Flash::success('Vote saved successfully.');
 
-        return redirect(route('votes.index'));
+        return redirect(route('elections.index'));
     }
 
     /**

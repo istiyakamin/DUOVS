@@ -63,7 +63,7 @@ class Election extends Model
 
      public function candidate_id()
     {
-        return $this->hasOne(Candidate::class);
+        return $this->belongsTo(Candidate::class);
     }
 
     public function election_category()

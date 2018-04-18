@@ -33,12 +33,16 @@ Route::get('/contact', function ()
 	return view('page.contact');
 });
 
+
 Route::get('electionNews', 'ElectionNewsController@index');
 
 
 Route::middleware(['auth'])->group(function () {
 
 Route::resource('users', 'UserController');
+Route::resource('elections', 'ElectionController');
+
+Route::post('/votes/count', 'VoteController@store');
 
 });
 		// Only Admin can access This
@@ -54,17 +58,22 @@ Route::middleware(['admin', 'auth'])->group(function () {
 
     //Route::resource('roles', 'RoleController');
 
-    Route::resource('elections', 'ElectionController');
+    Route::delete('elections/{id}', 'ElectionController@destroy');
+    Route::get('elections/create', 'ElectionController@create');
+	Route::get('elections/{id}/edit', 'ElectionController@edit');
+	Route::match(['put', 'patch'], 'elections/{id}', 'ElectionController@update');
+
 
 	Route::resource('electionCategories', 'ElectionCategoryController');
 
 	Route::resource('candidates', 'CandidateController');
 
-	Route::resource('votes', 'VoteController');
+	//Route::resource('votes', 'VoteController');
 
 	Route::resource('electionNews', 'ElectionNewsController');
 	
 });
+
 
 
 

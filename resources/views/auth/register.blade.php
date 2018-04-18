@@ -69,6 +69,7 @@
             <div class="form-group has-feedback{{ $errors->has('department') ? ' has-error' : '' }}">
                <!--  <input type="text" class="form-control" name="department" value="{{ old('department') }}" placeholder="Department"> -->
                 <select class="selectpicker form-control" name="department">
+                    <option value="">Select Department</option>
                     <option value="CSE">CSE</option>
                     <option value="IIT">IIT</option>
                     <option value="PHARMECY">PHARMECY</option>
@@ -101,6 +102,7 @@
             <div class="form-group has-feedback{{ $errors->has('faculty') ? ' has-error' : '' }}">
                 <!-- <input type="text" class="form-control" name="faculty" value="{{ old('faculty') }}" placeholder="faculty"> -->
                 <select class="selectpicker form-control" name="faculty">
+                    <option value="">Select Faculty</option>
                     <option value="ENGINEERING">ENGINEERING</option>
                     <option value="SCIENCE">SCIENCE</option>
                     <option value="COMMERCE">COMMERCE</option>

@@ -15,6 +15,7 @@ class CreateCandidatesTable extends Migration
     {
         Schema::create('candidates', function (Blueprint $table) {
             $table->increments('id');
+            
             $table->integer('election_id');
             $table->integer('user_id');
             $table->softDeletes();

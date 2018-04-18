@@ -70,7 +70,7 @@ class CandidateController extends AppBaseController
         ]);
 
         $input = $request->all();
-
+        
         $candidate = $this->candidateRepository->create($input);
 
         Flash::success('Candidate saved successfully.');

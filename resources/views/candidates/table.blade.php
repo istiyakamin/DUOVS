@@ -9,8 +9,8 @@
     <tbody>
     @foreach($candidates as $candidate)
         <tr>
-            <td>{!! $candidate->election_id !!}</td>
-            <td>{!! $candidate->user_id !!}</td>
+            <td>{!! DB::table('elections')->where('id', $candidate->election_id)->first()->name !!}</td>
+            <td>{!! DB::table('users')->where('id', $candidate->user_id)->first()->name !!}</td>
             <td>
                 {!! Form::open(['route' => ['candidates.destroy', $candidate->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
