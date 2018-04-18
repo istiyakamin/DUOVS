@@ -58,10 +58,7 @@ Route::middleware(['admin', 'auth'])->group(function () {
 
     //Route::resource('roles', 'RoleController');
 
-    Route::delete('elections/{id}', 'ElectionController@destroy');
-    Route::get('elections/create', 'ElectionController@create');
-	Route::get('elections/{id}/edit', 'ElectionController@edit');
-	Route::match(['put', 'patch'], 'elections/{id}', 'ElectionController@update');
+
 
 
 	Route::resource('electionCategories', 'ElectionCategoryController');

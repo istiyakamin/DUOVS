@@ -12,6 +12,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\ElectionCategory;
 use App\Models\Candidate;
+use App\Models\Vote;
 
 class ElectionController extends AppBaseController
 {
@@ -84,6 +85,7 @@ class ElectionController extends AppBaseController
     {
         $election = $this->electionRepository->findWithoutFail($id);
         $candidate_lists = Candidate::all();
+        $vote_counts = Vote::where('election_id', $id)->get();
         
          
 
@@ -93,7 +95,7 @@ class ElectionController extends AppBaseController
             return redirect(route('elections.index'));
         }
 
-        return view('elections.show', compact('election', 'candidate_lists'));
+        return view('elections.show', compact('election', 'candidate_lists', 'vote_counts'));
     }
 
     /**

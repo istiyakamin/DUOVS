@@ -6,6 +6,24 @@
             Election
         </h1>
     </section>
+
+    
+    @if($errors->has('candidate_id'))
+      <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-ban"></i> Value Must not be empty</h4>
+      </div>
+    @elseif($errors->has('user_id')) 
+      <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-ban"></i> Your Vote Already has Been Taken</h4>
+      </div>
+    @endif
+
+    
+        
+
+
     <div class="content">
         <div class="box box-primary">
             <div class="box-body">
@@ -19,16 +37,7 @@
               <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">Result</a></li>
               <li class="active"><a href="#tab_3" data-toggle="tab" aria-expanded="true">Election Details</a></li>
               <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                  Dropdown <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                  <li role="presentation" class="divider"></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                </ul>
+                
               </li>
               <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
             </ul>
@@ -81,25 +90,44 @@
               </div>
               <!-- /.tab-pane -->
               <div class="tab-pane" id="tab_2">
-                
-            <div class="box-header with-border">
-              <h3 class="box-title">Progress Bars Different Sizes</h3>
-            </div>
-            <!-- /.box-header -->
-            @foreach($candidate_lists as $candidate_list)
-             @if($candidate_list->election_id == $election->id)
-                <div class="box-body">
-                    {!! DB::table('users')->where('id', $candidate_list->user_id)->first()->name !!}
-                    <div class="progress progress-sm active">
-                      <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
 
-                        <span class="sr-only">20% Complete</span>
-                      </div>
-                    </div>
-                 </div>
-                 @endif
-            @endforeach
-              <!-- /.box-body -->
+                <div class="box">
+                  <div class="box-header">
+                    <h3 class="box-title">Striped Full Width Table</h3>
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="box-body no-padding">
+                    <table class="table table-striped">
+                      <tbody><tr>
+                        
+                        <th>Candidate Name</th>
+                        <th>Progress</th>
+                        <th style="width: 40px">Vote</th>
+                      </tr>
+                      @foreach($candidate_lists as $candidate_list)
+                   @if($candidate_list->election_id == $election->id)
+                      <tr>
+                        
+                        <td> {!! DB::table('users')->where('id', $candidate_list->user_id)->first()->name !!} </td>
+                        <td>
+                          <div class="progress progress-xs">
+                            <div class="progress-bar progress-bar-info" style="width: 70%"></div>
+                          </div>
+                        </td>
+                        <td>
+                          <span class="badge bg-red">
+
+                            {{count($vote_counts)}}
+                          </span>
+                        </td>
+                      </tr>
+                      @endif
+                  @endforeach
+                    </tbody></table>
+                  </div>
+                  <!-- /.box-body -->
+                </div>
+            
           
               </div>
               <!-- /.tab-pane -->
