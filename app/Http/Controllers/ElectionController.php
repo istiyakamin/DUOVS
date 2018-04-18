@@ -83,6 +83,7 @@ class ElectionController extends AppBaseController
     public function show($id)
     {
         $election = $this->electionRepository->findWithoutFail($id);
+        $candidate_lists = Candidate::all();
         
          
 
@@ -92,7 +93,7 @@ class ElectionController extends AppBaseController
             return redirect(route('elections.index'));
         }
 
-        return view('elections.show', compact('election'));
+        return view('elections.show', compact('election', 'candidate_lists'));
     }
 
     /**
