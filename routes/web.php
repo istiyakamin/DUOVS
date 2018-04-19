@@ -33,6 +33,10 @@ Route::get('/contact', function ()
 	return view('page.contact');
 });
 
+Route::get('/electionMessage', function ()
+{
+	return view('elections.message');
+});
 
 Route::get('electionNews', 'ElectionNewsController@index');
 

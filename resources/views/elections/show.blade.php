@@ -7,6 +7,7 @@
         </h1>
     </section>
 
+  @include('flash::message')
     
     @if($errors->has('candidate_id'))
       <div class="alert alert-danger alert-dismissible">
@@ -145,8 +146,6 @@
           <!-- nav-tabs-custom -->
         </div>
 </div>
-
-                    <a href="{!! route('elections.index') !!}" class="btn btn-default">Back</a>
                 </div>
             </div>
         </div>

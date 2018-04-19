@@ -67,7 +67,7 @@ class VoteController extends AppBaseController
 
         Flash::success('Vote saved successfully.');
 
-        return redirect(route('elections.index'));
+        return redirect('electionMessage');
     }
 
     /**
