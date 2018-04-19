@@ -84,7 +84,7 @@ class ElectionController extends AppBaseController
     public function show($id)
     {
         $election = $this->electionRepository->findWithoutFail($id);
-        $candidate_lists = Candidate::all();
+        $candidate_lists = Candidate::where('election_id', $id)->get();
         $vote_counts = Vote::where('election_id', $id)->get();
         
          

@@ -58,7 +58,7 @@
                         <div class="panel-body">
                               <ul class="list-group">
 
-                              @foreach($candidate_lists as $candidate_list)
+                               @foreach($candidate_lists as $candidate_list)
                               @if($candidate_list->election_id == $election->id)
                                 
                                 <li class="list-group-item">
@@ -77,7 +77,7 @@
                                 </li>
                                 
                                 @endif
-                                @endforeach
+                                @endforeach 
                             </ul>  
                             
                             <div class="panel-footer">
@@ -106,23 +106,30 @@
                         <th style="width: 40px">Vote</th>
                       </tr>
                       @foreach($candidate_lists as $candidate_list)
-                   @if($candidate_list->election_id == $election->id)
+                   
                       <tr>
                         
                         <td> {!! DB::table('users')->where('id', $candidate_list->user_id)->first()->name !!} </td>
                         <td>
                           <div class="progress progress-xs">
-                            <div class="progress-bar progress-bar-info" style="width: 70%"></div>
+                            @php
+                            $candidate_votes = DB::table('votes')->where('candidate_id', $candidate_list->user_id)->count();
+                            $total_votes = count($vote_counts);
+                            $percentage = ($candidate_votes * 100)/$total_votes;
+                            @endphp
+                            <div class="progress-bar progress-bar-info" style="width: {{$percentage}}%"></div>
                           </div>
                         </td>
                         <td>
                           <span class="badge bg-red">
 
-                            {{count($vote_counts)}}
+                            {!! DB::table('votes')->where('candidate_id', $candidate_list->user_id)->count()  !!}
+
+
                           </span>
                         </td>
                       </tr>
-                      @endif
+                      
                   @endforeach
                     </tbody></table>
                   </div>
