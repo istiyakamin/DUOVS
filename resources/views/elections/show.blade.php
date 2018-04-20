@@ -105,13 +105,7 @@
                    @if(count($candidate_lists) > 0) 
                   <div class="box-body no-padding">
 
-                    <div class="callout callout-success">
-                      <h4>
-                        Dr. Mohammed Shafiul Alam Khan
-                      </h4>
-
-                      <p>winner {{ date("Y/m/d h:i:sa") }}</p>
-                    </div>
+                   
                     
                     <table class="table table-striped">
                       <tbody><tr>
@@ -157,6 +151,13 @@
                     </tbody></table>
                   </div>@else {{ "Admin could not select any candidate" }} @endif
                   <!-- /.box-body -->
+                   <div class="callout callout-success">
+                      <h4>
+                        Dr. Mohammed Shafiul Alam Khan is the winner
+                      </h4>
+
+                      <p></p>
+                    </div>
                 </div>
             
           
@@ -166,8 +167,8 @@
                 <h3>Election Name: {{ $election->name }}</h3>
                     {{$election->description}} <br>
                     <b>Election Category:</b> {{ $election->election_category['name'] }} <br>
-                    <b>Start Date:</b> {{ $election->start }} <br>
-                    <b>Close Date:</b> {{ $election->end }}
+                    <b>Starting time:</b> {{ $election->start }} <br>
+                    <b>Closing time:</b> {{ $election->end }}
               </div>
               <!-- /.tab-pane -->
             </div>
