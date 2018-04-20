@@ -30,7 +30,7 @@
             <div class="box-body">
                 <div class="row" style="padding-left: 20px">
                     <div class="row">
-<div class="col-md-8">
+                <div class="col-md-8">
           <!-- Custom Tabs -->
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
@@ -40,7 +40,7 @@
               <li class="dropdown">
                 
               </li>
-              <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+              
             </ul>
             <div class="tab-content">
               <div class="tab-pane " id="tab_1">
