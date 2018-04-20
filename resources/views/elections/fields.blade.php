@@ -28,13 +28,13 @@
 <!-- Start Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('start', 'Start:') !!}
-    {!! Form::date('start', null, ['class' => 'form-control']) !!}
+    <input class="form-control" name="start" type="datetime-local" value="start" id="start">
 </div>
 
 <!-- End Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('end', 'End:') !!}
-    {!! Form::date('end', null, ['class' => 'form-control']) !!}
+    <input class="form-control" name="end" type="datetime-local" value="start" id="start">
 </div>
 
 <!-- Is Active Field -->

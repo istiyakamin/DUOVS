@@ -57,6 +57,10 @@
                         <input type="hidden" name="election_id" value="{{ $election->id }}">
                         <div class="panel-body">
                               <ul class="list-group">
+                                @if(count($candidate_lists) == 0)
+                                  {{ "Admin could not select any candidata" }}
+                                @endif
+
 
                                @foreach($candidate_lists as $candidate_list)
                               @if($candidate_list->election_id == $election->id)
@@ -81,9 +85,11 @@
                             </ul>  
                             
                             <div class="panel-footer">
+                              @if(count($candidate_lists) > 0)
                               <button  type="submit" class="btn btn-success btn-sm">
                                   Vote
                               </button>
+                              @endif
                             </div>
                         </div>
                       </form>
@@ -95,7 +101,18 @@
                 <div class="box">
                   
                   <!-- /.box-header -->
+
+                   @if(count($candidate_lists) > 0) 
                   <div class="box-body no-padding">
+
+                    <div class="callout callout-success">
+                      <h4>
+                        Dr. Mohammed Shafiul Alam Khan
+                      </h4>
+
+                      <p>winner {{ date("Y/m/d h:i:sa") }}</p>
+                    </div>
+                    
                     <table class="table table-striped">
                       <tbody><tr>
                         
@@ -109,14 +126,22 @@
                         
                         <td> {!! DB::table('users')->where('id', $candidate_list->user_id)->first()->name !!} </td>
                         <td>
+
                           <div class="progress progress-xs">
                             @php
                             $candidate_votes = DB::table('votes')->where('candidate_id', $candidate_list->user_id)->count();
                             $total_votes = count($vote_counts);
+                            if($total_votes > 0){
                             $percentage = ($candidate_votes * 100)/$total_votes;
+                            }
+                            
+                            
                             @endphp
-                            <div class="progress-bar progress-bar-info" style="width: {{$percentage}}%"></div>
+
+
+                            <div class="progress-bar progress-bar-info" style="width: @if($total_votes > 0){{$percentage}}@endif%"></div>
                           </div>
+                          @if($total_votes > 0){{$percentage}}@endif%
                         </td>
                         <td>
                           <span class="badge bg-red">
@@ -130,7 +155,7 @@
                       
                   @endforeach
                     </tbody></table>
-                  </div>
+                  </div>@else {{ "Admin could not select any candidate" }} @endif
                   <!-- /.box-body -->
                 </div>
             
