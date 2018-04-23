@@ -21,8 +21,8 @@
       </div>
     @endif
 
-    
-        
+
+    @foreach($vote_counts as $vote)
 
 
     <div class="content">
@@ -44,7 +44,9 @@
             </ul>
             <div class="tab-content">
               <div class="tab-pane " id="tab_1">
-                
+                  @if($vote->user_id == Auth::user()->id)
+                      {{ "Your Vote Already have been completed" }}
+                  @else
                   <div class="panel panel-primary">
                       <div class="panel-heading">
                           <h3 class="panel-title">
@@ -60,6 +62,12 @@
                                 @if(count($candidate_lists) == 0)
                                   {{ "Admin could not select any candidata" }}
                                 @endif
+
+
+
+
+
+
 
 
                                @foreach($candidate_lists as $candidate_list)
@@ -93,7 +101,8 @@
                             </div>
                         </div>
                       </form>
-              </div>
+                    </div>
+                  @endif
               </div>
               <!-- /.tab-pane -->
               <div class="tab-pane" id="tab_2">
@@ -181,4 +190,5 @@
             </div>
         </div>
     </div>
+    @endforeach
 @endsection
