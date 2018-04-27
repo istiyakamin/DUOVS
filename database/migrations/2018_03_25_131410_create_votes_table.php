@@ -19,6 +19,7 @@ class CreateVotesTable extends Migration
             $table->integer('election_id');
             $table->integer('candidate_id');
             $table->integer('user_id');
+            $table->boolean('vote_count')->default(1);
             $table->timestamps();
         });
     }

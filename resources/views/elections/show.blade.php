@@ -14,15 +14,12 @@
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         <h4><i class="icon fa fa-ban"></i> Value Must not be empty</h4>
       </div>
-    @elseif($errors->has('user_id')) 
-      <div class="alert alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    @endif
+    @if($errors->has('user_id'))
+      <div class="alert alert-danger">
         <h4><i class="icon fa fa-ban"></i> Your Vote Already has Been Taken</h4>
       </div>
     @endif
-
-
-    @foreach($vote_counts as $vote)
 
 
     <div class="content">
@@ -37,22 +34,25 @@
               <li class=""><a href="#tab_1" data-toggle="tab" aria-expanded="false">Election</a></li>
               <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">Result</a></li>
               <li class="active"><a href="#tab_3" data-toggle="tab" aria-expanded="true">Election Details</a></li>
-              <li class="dropdown">
-                
-              </li>
+              <li class="dropdown"></li>
               
             </ul>
             <div class="tab-content">
               <div class="tab-pane " id="tab_1">
-                  @if($vote->user_id == Auth::user()->id)
-                      {{ "Your Vote Already have been completed" }}
-                  @else
                   <div class="panel panel-primary">
                       <div class="panel-heading">
                           <h3 class="panel-title">
                               <span class="glyphicon glyphicon-arrow-right"></span>Cast Your Vote please </a>
                           </h3>
                       </div>
+                      @if(isset($vote_exitsts[0]))
+                        <h4>
+                          Your Vote Alredy have been done.. 
+                        </h4>
+                      @else
+                      
+
+                      
                       <form action="/votes/count" method="post">
                         {{ csrf_field() }}
                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
@@ -62,11 +62,6 @@
                                 @if(count($candidate_lists) == 0)
                                   {{ "Admin could not select any candidata" }}
                                 @endif
-
-
-
-
-
 
 
 
@@ -101,8 +96,9 @@
                             </div>
                         </div>
                       </form>
+                      @endif
                     </div>
-                  @endif
+
               </div>
               <!-- /.tab-pane -->
               <div class="tab-pane" id="tab_2">
@@ -132,10 +128,10 @@
 
                           <div class="progress progress-xs">
                             @php
-                            $candidate_votes = DB::table('votes')->where('candidate_id', $candidate_list->user_id)->count();
+                            $candidate_votes = DB::table('votes')->where(['candidate_id' => $candidate_list->user_id, 'election_id'=> $election->id])->count();
                             $total_votes = count($vote_counts);
                             if($total_votes > 0){
-                            $percentage = ($candidate_votes * 100)/$total_votes;
+                            $percentage = round(($candidate_votes * 100)/$total_votes, 2);
                             }
                             
                             
@@ -149,7 +145,7 @@
                         <td>
                           <span class="badge bg-red">
 
-                            {!! DB::table('votes')->where('candidate_id', $candidate_list->user_id)->count()  !!}
+                            {!! DB::table('votes')->where(['candidate_id' => $candidate_list->user_id, 'election_id'=> $election->id])->count()  !!}
 
 
                           </span>
@@ -160,13 +156,19 @@
                     </tbody></table>
                   </div>@else {{ "Admin could not select any candidate" }} @endif
                   <!-- /.box-body -->
+                 
+                  
+                  
                    <div class="callout callout-success">
                       <h4>
-                        Dr. Mohammed Shafiul Alam Khan is the winner
+                        @foreach($winner as $single_winner)
+                        {!! DB::table('users')->where('id', $single_winner->candidate_id)->first()->name !!} is the winner 
+                        @endforeach
                       </h4>
 
-                      <p></p>
+                      <p></p> 
                     </div>
+                    
                 </div>
             
           
@@ -190,5 +192,4 @@
             </div>
         </div>
     </div>
-    @endforeach
 @endsection

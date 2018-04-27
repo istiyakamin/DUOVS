@@ -6,6 +6,7 @@ use App\Http\Requests\CreateElectionRequest;
 use App\Http\Requests\UpdateElectionRequest;
 use App\Repositories\ElectionRepository;
 use App\Http\Controllers\AppBaseController;
+use DB;
 use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -13,6 +14,7 @@ use Response;
 use App\Models\ElectionCategory;
 use App\Models\Candidate;
 use App\Models\Vote;
+use Auth;
 
 class ElectionController extends AppBaseController
 {
@@ -86,8 +88,14 @@ class ElectionController extends AppBaseController
         $election = $this->electionRepository->findWithoutFail($id);
         $candidate_lists = Candidate::where('election_id', $id)->get();
         $vote_counts = Vote::where('election_id', $id)->get();
+        $winner = DB::select(DB::raw("SELECT `candidate_id`, SUM(`vote_count`) FROM votes WHERE `election_id`=$id GROUP BY 1 ORDER BY 2 DESC LIMIT 1"));
         
-         
+        $vote_exitsts = Vote::where('election_id', $id)->where('user_id', Auth::user()->id)->get();
+        
+        
+       
+
+
 
         if (empty($election)) {
             Flash::error('Election not found');
@@ -95,7 +103,7 @@ class ElectionController extends AppBaseController
             return redirect(route('elections.index'));
         }
 
-        return view('elections.show', compact('election', 'candidate_lists', 'vote_counts'));
+        return view('elections.show', compact('election', 'candidate_lists', 'vote_counts', 'winner','vote_exitsts'));
     }
 
     /**

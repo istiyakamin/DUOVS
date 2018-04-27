@@ -57,7 +57,7 @@ class VoteController extends AppBaseController
     {
         $this->validate($request, [
             'user_id' => 'required',
-            'election_id' => 'required|unique:votes',
+            'election_id' => 'required',
             'candidate_id' => 'required',
         ]);
         
