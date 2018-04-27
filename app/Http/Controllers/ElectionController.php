@@ -91,6 +91,8 @@ class ElectionController extends AppBaseController
         $winner = DB::select(DB::raw("SELECT `candidate_id`, SUM(`vote_count`) FROM votes WHERE `election_id`=$id GROUP BY 1 ORDER BY 2 DESC LIMIT 1"));
         
         $vote_exitsts = Vote::where('election_id', $id)->where('user_id', Auth::user()->id)->get();
+
+        
         
         
        

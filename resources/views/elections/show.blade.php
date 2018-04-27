@@ -37,8 +37,37 @@
               <li class="dropdown"></li>
               
             </ul>
+
+
             <div class="tab-content">
               <div class="tab-pane " id="tab_1">
+
+
+
+
+
+          @php
+            date_default_timezone_set('Asia/Dhaka');
+
+            $vote_start_time  = strtotime($election->start);
+            $vote_end_time = strtotime($election->end);
+            $current_date = date('Y-m-d H:i:s', time());
+            $current_date_time = strtotime($current_date);
+            $differenceInSeconds = $vote_end_time - $vote_start_time;
+            $diff_current_time = $current_date_time - $vote_start_time;
+
+            
+          @endphp
+          @if($diff_current_time < 0)
+          {{"Vote not started yet"}}
+
+          @elseif($diff_current_time > $differenceInSeconds)
+
+          {{ "Vote already end" }}
+
+          @else
+
+
                   <div class="panel panel-primary">
                       <div class="panel-heading">
                           <h3 class="panel-title">
@@ -98,11 +127,13 @@
                       </form>
                       @endif
                     </div>
-
+                  @endif
               </div>
               <!-- /.tab-pane -->
               <div class="tab-pane" id="tab_2">
-
+                  @if($diff_current_time < 0)
+                  {{"Vote not started yet"}}
+                  @else
                 <div class="box">
                   
                   <!-- /.box-header -->
@@ -170,7 +201,7 @@
                     </div>
                     
                 </div>
-            
+                @endif
           
               </div>
               <!-- /.tab-pane -->
