@@ -9,7 +9,7 @@
           </a>
           <ul class="treeview-menu" style="display: none;">
             <li><a href="http://127.0.0.1:8000/elections/1"><i class="fa fa-circle-o"></i>Treasurer</a></li>
-                <li><a href="#"><i class="fa fa-circle-o"></i>Member</a></li>
+                <li><a href="http://127.0.0.1:8000/elections/2"><i class="fa fa-circle-o"></i>Member</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i>Joint Secretary</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i>President</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i>Vice President</a></li>

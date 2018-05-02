@@ -56,7 +56,7 @@ class VoteController extends AppBaseController
     public function store(CreateVoteRequest $request)
     {
         $this->validate($request, [
-            'user_id' => 'required|unique:votes',
+            'user_id' => 'required',
             'election_id' => 'required',
             'candidate_id' => 'required',
         ]);
