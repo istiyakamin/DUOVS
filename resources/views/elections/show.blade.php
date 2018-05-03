@@ -63,7 +63,7 @@
 
           @elseif($diff_current_time > $differenceInSeconds)
 
-          {{ "Vote already end" }}
+          {{ "Voting time is over" }}
 
           @else
 
@@ -76,7 +76,7 @@
                       </div>
                       @if(isset($vote_exitsts[0]))
                         <h4>
-                          Your Vote Alredy have been done.. 
+                          You have already casted your vote.. 
                         </h4>
                       @else
                       
