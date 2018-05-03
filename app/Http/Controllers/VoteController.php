@@ -55,15 +55,25 @@ class VoteController extends AppBaseController
      */
     public function store(CreateVoteRequest $request)
     {
+        //$this->candidate_id = implode(' ', $request->candidate_id);
+
         $this->validate($request, [
             'user_id' => 'required',
             'election_id' => 'required',
             'candidate_id' => 'required',
         ]);
+
+
         
         $input = $request->all();
-        
-        $vote = $this->voteRepository->create($input);
+        //$input['candidate_id'] = implode(" ", $input['candidate_id']);
+
+        $amitmi = $input['candidate_id'];
+
+        foreach ($amitmi as $ami=>$input['candidate_id']){
+            $vote = $this->voteRepository->create($input);
+        }
+
 
         Flash::success('Vote saved successfully.');
 

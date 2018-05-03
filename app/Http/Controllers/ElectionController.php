@@ -89,6 +89,10 @@ class ElectionController extends AppBaseController
         $candidate_lists = Candidate::where('election_id', $id)->get();
         $vote_counts = Vote::where('election_id', $id)->get();
         $winner = DB::select(DB::raw("SELECT `candidate_id`, SUM(`vote_count`) FROM votes WHERE `election_id`=$id GROUP BY 1 ORDER BY 2 DESC LIMIT 1"));
+        if($id = 2){
+            $member_winner = DB::select(DB::raw("SELECT `candidate_id`, SUM(`vote_count`) FROM votes WHERE `election_id`=$id GROUP BY 1 ORDER BY 2 DESC LIMIT 10"));
+        }
+
         
         $vote_exitsts = Vote::where('election_id', $id)->where('user_id', Auth::user()->id)->get();
 
@@ -105,7 +109,7 @@ class ElectionController extends AppBaseController
             return redirect(route('elections.index'));
         }
 
-        return view('elections.show', compact('election', 'candidate_lists', 'vote_counts', 'winner','vote_exitsts'));
+        return view('elections.show', compact('election', 'candidate_lists', 'vote_counts', 'winner','vote_exitsts','member_winner'));
     }
 
     /**
